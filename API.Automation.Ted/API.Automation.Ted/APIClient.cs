@@ -1,4 +1,6 @@
 ﻿using API.Automation.Ted.Auth;
+using API.Automation.Ted.Models.Response;
+using API.Automation.Ted.Utility;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -41,11 +43,12 @@ namespace API.Automation.Ted
             GC.SuppressFinalize(this);
         }
 
-        public async Task<RestResponse> GetListOfUser<T>(int pageNumber)
+        public async Task<RestResponse> GetListOfUsers<T>(int pageNumber)
         {
             var request=new RestRequest(Endpoints.GET_LIST_OF_USERS, Method.Get);
             request.AddQueryParameter("page", pageNumber);
-            return await client.ExecuteAsync(request);
+            var res= await client.ExecuteAsync(request);           
+            return res;
         }
 
         public async Task<RestResponse> GetUser<T>(string id)

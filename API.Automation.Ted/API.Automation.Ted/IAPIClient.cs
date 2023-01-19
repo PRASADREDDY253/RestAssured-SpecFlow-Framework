@@ -14,6 +14,6 @@ namespace API.Automation.Ted
         Task<RestResponse> UpdateUser<T>(T payload, string id) where T : class;
         Task<RestResponse> DeleteUser<T>(string id);
         Task<RestResponse> GetUser<T>(string id);
-        Task<RestResponse> GetListOfUser<T>(int pageNumber);
+        Task<RestResponse> GetListOfUsers<T>(int pageNumber);
     }
 }

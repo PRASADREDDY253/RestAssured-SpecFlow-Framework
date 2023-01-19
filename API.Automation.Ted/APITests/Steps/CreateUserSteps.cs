@@ -6,6 +6,7 @@ using RestSharp;
 using System;
 using System.Net;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace APITests.Steps
 {
@@ -24,18 +25,7 @@ namespace APITests.Steps
             this.scenarioContext = scenarioContext;
             api = new APIClient();
         }
-
-        [Given(@"User with name ""([^""]*)""")]
-        public void GivenUserWithName(string name)
-        {
-            createUserReq.name = name;
-        }
-
-        [Given(@"user with job ""([^""]*)""")]
-        public void GivenUserWithJob(string job)
-        {
-            createUserReq.job = job;
-        }
+        
         [Given(@"User with payload ""([^""]*)""")]
         public void GivenUserWithPayload(string fileName)
         {
@@ -62,5 +52,29 @@ namespace APITests.Steps
             Assert.AreEqual(createUserReq.name, content.name);
             Assert.AreEqual(createUserReq.job, content.job);
         }
+
+        [Given(@"Retrive below users with name and job")]
+        public void GivenRetriveBelowUsersWithNameAndJob(Table table)
+        {
+            dynamic datas = table.CreateDynamicSet();
+            foreach (var item in datas)
+            {
+                Console.WriteLine($"Name:{item.name},job:{item.job}");
+            }
+            
+        }
+
+        [When(@"sends request to create user")]
+        public void WhenSendsRequestToCreateUser()
+        {
+            
+        }
+
+        [Then(@"validate users are created")]
+        public void ThenValidateUsersAreCreated()
+        {
+            
+        }
+
     }
 }
